@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/from_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="left"
+            android:text="From"
+            android:textColor="#505050"  />
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/from_input"
+            android:hint="Type in the Location"
+            android:textColorHint="#D0D0D0"
+            android:textStyle="bold"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="0dp"
+            android:dropDownHeight="wrap_content"
+            android:dropDownVerticalOffset="-70dp"
+            android:completionThreshold="1"
+            />
+
+        <TextView
+            android:id="@+id/mode_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="Travel mode"
+            android:layout_margin="5dp"
+            android:textColor="#505050"
+            android:textSize="15sp" />
+
+        <Spinner
+            android:id="@+id/mode_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:entries="@array/mode_arr"
+            android:textSize="15sp" />
+
+        <fragment
+            android:id="@+id/map_fragment"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" />
+    </LinearLayout>
+</LinearLayout>

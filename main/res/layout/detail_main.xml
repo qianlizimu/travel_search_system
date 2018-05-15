@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:layout_margin="0dp"
+    android:padding="0dp">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/detail_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/toolbar_theme" >
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/detail_title"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textStyle="bold"
+            android:textSize="21dp"
+            android:textColor="#fff"
+            android:singleLine = "true"
+            android:ellipsize = "end"  />
+        <ImageView
+            android:id="@+id/share_img"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/share_arrow"
+            android:clickable="true" />
+        <ImageView
+            android:id="@+id/fav_img"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/heart_fill_white" />
+    </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+    <HorizontalScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:background="#00AA8D"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_margin="0dp"
+        android:padding="0dp">
+
+        <TextView
+            android:id="@+id/tab_info"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="INFO"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bottom_red_border"
+            android:textSize="15sp"
+            android:drawableLeft="@drawable/info_outline"
+            android:drawablePadding="-20dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="3dp" />
+
+        <TextView
+            android:id="@+id/tab_photo"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="PHOTOS"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/left_border"
+            android:drawableLeft="@drawable/photos"
+            android:adjustViewBounds="true"
+            android:drawablePadding="0dp"
+            android:textSize="15sp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp" />
+        <TextView
+            android:id="@+id/tab_map"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="MAP"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/left_border"
+            android:drawableLeft="@drawable/maps"
+            android:textSize="15sp"
+            android:drawablePadding="0dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="20dp" />
+        <TextView
+            android:id="@+id/tab_review"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="REVIEWS"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/left_border"
+            android:drawableLeft="@drawable/review"
+            android:drawablePadding="0dp"
+            android:textSize="15sp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp" />
+
+    </LinearLayout>
+       </HorizontalScrollView >
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/detail_pager" />
+
+</LinearLayout>

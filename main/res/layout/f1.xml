@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFBA55"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:layout_margin="0dp"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/keyword_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Keyword"
+            android:textColor="#505050"
+            android:textSize="15sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/keyword_reminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Please enter mandatory field"
+            android:textColor="#FF0000"
+            android:textSize="15sp"
+            android:layout_margin="5dp" />
+
+        <EditText
+            android:id="@+id/keyword_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Keyword"
+            android:textColorHint="#95A1AA"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            />
+
+        <TextView
+            android:id="@+id/category_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Category"
+            android:textColor="#505050"
+            android:textSize="15sp"
+            android:layout_margin="5dp" />
+
+        <Spinner
+            android:id="@+id/category_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:entries="@array/Data"
+            android:textSize="15sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+
+        <TextView
+            android:id="@+id/distance_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Distance (in miles)"
+            android:textColor="#505050"
+            android:textSize="15sp"
+            android:layout_margin="5dp" />
+        <EditText
+            android:id="@+id/input_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Distance (default 10 miles)"
+            android:textColorHint="#95A1AA"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            />
+        <TextView
+            android:id="@+id/from_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="From"
+            android:textColor="#505050"
+            android:textSize="15sp"
+            android:layout_margin="5dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/from_rg"
+            android:layout_marginLeft="5dp">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current location"
+                android:id="@+id/from_current"
+                android:checked="true"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other. Specify Location"
+                android:id="@+id/from_other" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/location_reminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Please enter mandatory field"
+            android:textColor="#FF0000"
+            android:textSize="15sp"
+            android:layout_margin="5dp"  />
+
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/location_input"
+            android:hint="Type in the Location"
+            android:textColorHint="#95A1AA"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="0dp"
+            android:enabled="false"
+            android:completionThreshold="1"
+            android:dropDownHeight="wrap_content"
+            android:dropDownVerticalOffset="-70dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal" >
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:text="SEARCH" />
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:text="CLEAR" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</LinearLayout>

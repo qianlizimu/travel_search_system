@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="horizontal"
+    android:id="@+id/review_out_lay">
+
+    <ImageView
+        android:id="@+id/review_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="5dp"
+        android:clickable="false"  />
+
+    <LinearLayout
+        android:id="@+id/review_text_lay"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:clickable="false" >
+
+    <TextView
+        android:id="@+id/writer_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#3FBEA8"
+        android:clickable="false" />
+
+        <RatingBar
+            android:id="@+id/rating_text"
+            android:numStars="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-50dp"
+            android:layout_marginTop="-13dp"
+            android:layout_marginBottom="-20dp"
+            android:isIndicator="true"
+            android:stepSize="0.1"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            android:clickable="false" >
+        </RatingBar>
+
+        <TextView
+            android:id="@+id/date_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:clickable="false" />
+        <TextView
+            android:id="@+id/review_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:clickable="false"/>
+
+</LinearLayout>
+
+
+</LinearLayout>

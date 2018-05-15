@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00AA8D"
+    android:layout_margin="0dp"
+    android:padding="0dp"
+    android:elevation="0dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00AA8D"
+    android:layout_margin="0dp"
+    android:padding="0dp"
+        android:elevation="0dp"
+    android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/app_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:title="Places Search"
+            app:titleTextColor="#fff" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#00AA8D"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_margin="0dp"
+            android:paddingBottom="0dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="0dp">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="170dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="SEARCH"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/bottom_red_border"
+                android:textSize="15sp"
+                android:paddingLeft="40dp"
+                android:paddingRight="30dp"
+                android:drawableLeft="@drawable/search_mag_icon"
+                android:drawablePadding="0dp"   />
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="170dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="FAVORITES"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/left_border"
+                android:drawableLeft="@drawable/heart_fill_white"
+                android:drawablePadding="-13dp"
+                android:paddingLeft="35dp"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="2dp"-->
+            <!--android:background="#68AE94"/>-->
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/pager" />
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
