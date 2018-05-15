@@ -1,0 +1,412 @@
+#search_box{
+background-color:#F0F0F0;
+border-radius: 10px;
+border:1px solid #C0C0C0;
+font-size:14px;
+}
+label{
+font-weight:normal;
+margin:0;
+padding:0;
+}
+
+#clear_button{
+border-radius:3px;
+border:0.5px solid #C0C0C0;
+}
+.result_button_div{
+text-align:center;
+width:100%;
+margin:0;
+padding:10px;
+}
+
+#favorite_button{
+background-color:#FFFFFF;
+color:#0066FF;
+border-style:none;
+outline: none;
+box-shadow:none;
+}
+#result_button{
+    background-color:#0066FF;
+    color:#FFFFFF;
+    border-style:none;
+    outline: none;
+    box-shadow:none;
+}
+
+#input_location{
+margin-left:15px;
+width:96%;
+}
+#input_distance{
+width:100%;
+}
+#input_keyword{
+width:100%;
+}
+#input_category{
+width:100%;
+padding-top:0;
+padding-bottom:0;
+padding-left:7px;
+}
+#keyword_reminder{
+color:#FF0000;
+margin:0;
+padding:0;
+line-height:20px;
+}
+#location_reminder{
+color:#FF0000;
+margin-left:15px;
+    padding:0;
+    line-height:20px;
+}
+
+
+.form-group{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+tr{
+    border-style: solid;
+    border-color: #C0C0C0;
+    border-right-width: 0;
+    border-top-width: 1px;
+    border-left-width: 0;
+    border-bottom-width: 1px;
+}
+
+th{
+    padding:5px;
+    text-align:left;
+}
+td{
+    padding:5px;
+    text-align:left;
+}
+
+#detail_button{
+    background-color:#FFFFFF;
+    color:#000000;
+    border-radius:3px;
+    border:1px solid #C0C0C0;
+}
+
+#fav_detail_button{
+    background-color:#FFFFFF;
+    color:#000000;
+    border-radius:3px;
+    border:1px solid #C0C0C0;
+}
+
+.icon_div{
+    background-color:#FFFFFF;
+    width:26px;
+    height:26px;
+    border-radius:3px;
+    border:0.5px solid #C0C0C0;
+    overflow:hidden;
+    font-size:18px;
+    line-height:26px;
+    text-align:center;
+    cursor:pointer;
+}
+.icon_div:hover{
+    background-color:	#E0E0E0;
+}
+.icon_img{
+    width:24.5px;
+    height:24px;
+}
+
+#next_button{
+    margin:3px;
+    background-color:#FFFFFF;
+    color:#000000;
+    width:70px;
+    height:26px;
+    border-radius:3px;
+    border:1px solid #C0C0C0;
+    font-size:12px;
+    line-height:26px;
+    padding-top:0;
+    padding-bottom:0;
+}
+
+#previous_button{
+    margin:3px;
+    background-color:#FFFFFF;
+    color:#000000;
+    width:70px;
+    height:26px;
+    border-radius:3px;
+    border:1px solid #C0C0C0;
+    font-size:12px;
+    line-height:26px;
+    padding-top:0;
+    padding-bottom:0;
+}
+
+#fav_next_button{
+    margin:3px;
+    background-color:#FFFFFF;
+    color:#000000;
+    width:70px;
+    height:26px;
+    border-radius:3px;
+    border:1px solid #C0C0C0;
+    font-size:12px;
+    line-height:26px;
+    padding-top:0;
+    padding-bottom:0;
+}
+#fav_previous_button{
+    margin:3px;
+    background-color:#FFFFFF;
+    color:#000000;
+    width:70px;
+    height:26px;
+    border-radius:3px;
+    border:1px solid #C0C0C0;
+    font-size:12px;
+    line-height:26px;
+    padding-top:0;
+    padding-bottom:0;
+}
+
+#next_button_div{
+    margin:10px auto;
+    text-align:center;
+}
+
+#fav_next_button_div{
+    margin:10px auto;
+    text-align:center;
+}
+
+tr.content_tr:hover{background: #E0E0E0;}
+
+.tr_detail_active{
+     background:#FFCC66;
+ }
+.tr_detail_active:hover{
+    background: #E0E0E0;
+}
+
+#result_area{
+    width:990px;
+    text-align:center;
+    margin:0 auto 80px;
+}
+#big_result_area{
+    position:relative;
+    left:0;
+    top:20px;
+    opacity:1;
+}
+
+#big_result_area.animation.ng-hide-remove {
+    animation: 0.4s slideLeft;
+}
+@keyframes slideLeft {
+    from {
+        opacity:0;
+        left:150%;
+    } to {  opacity:1;
+       left:0;
+      }
+}
+
+#detail_area{
+    text-align:center;
+    width:100%;
+    margin:0 0 80px;
+}
+#big_detail_area{
+    position: relative;
+    text-align:center;
+    width:100%;
+    opacity:1;
+    top:20px;
+    left: 0;
+}
+
+#big_detail_area.ng-hide-remove {
+    animation: 0.4s slideRight;
+}
+@keyframes slideRight {
+    from {
+        opacity:0;
+        left:-150%;
+    } to {  opacity:1;
+          left:0;
+      }
+}
+#big_favorite_area{
+    width:100%;
+    text-align:center;
+    position:relative;
+    left:0;
+    top:20px;
+}
+#favorite_area{
+    width:990px;
+    text-align:center;
+    margin:0 auto 80px;
+}
+#big_favorite_area.animation.ng-hide-remove {
+    animation: 0.4s slideLeft;
+}
+
+.review_animation.ng-hide-remove{
+    animation: 0.8s fadeIn;
+}
+@keyframes fadeIn {
+    from {
+        opacity:0;
+    } to {  opacity:1;
+      }
+}
+
+#list_button{
+    background-color:#FFFFFF;
+    color:#000000;
+    height:26px;
+    border-radius:3px;
+    border:0.5px solid #C0C0C0;
+    font-size:14px;
+    line-height:26px;
+    padding:0 8px;
+    float:left;
+    margin:5px;
+}
+
+#detail_twitter{
+    height:26px;
+    float:right;
+    margin:3px;
+}
+
+#detail_star_div{
+    margin:3px;
+    float:right;
+}
+
+#detail_star_div:hover{
+    background-color:#E0E0E0;
+}
+
+.clear{
+    clear:both;
+}
+
+.star-ratings-css {
+    unicode-bidi: bidi-override;
+    color: #c5c5c5;
+    font-size: 14px;
+    height: 14px;
+    width: 58px;
+    position: relative;
+    padding: 0;
+}
+.star-ratings-css-top {
+    color: #e7711b;
+    padding: 0;
+    position: absolute;
+    z-index: 1;
+    display: block;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.web_link{
+    color:#0066FF;
+    text-decoration:none;
+    cursor:pointer;
+}
+.web_link:hover{
+    text-decoration:underline;
+}
+
+#pegman_div{
+    border-radius:3px;
+    border:0.5px solid #C0C0C0;
+    margin:5px;
+    width:40px;
+    height:40px;
+    padding:5px;
+}
+#pegman_div:active{
+    border-radius:3px;
+    border:1.5px solid #33CCFF;
+}
+
+#map_and_panel{
+    width:99%;
+    margin:5px;
+    padding:0;
+}
+
+#place_map{
+    width:100%;
+    height:400px;
+    margin:0px;
+}
+
+#street_view_div{
+    width:99%;
+    height:400px;
+    margin:5px;
+}
+
+#route_panel{
+    text-align:left;
+    width:100%;
+    margin:0px;
+}
+
+#reviews_tab{
+    text-align:left;
+}
+#g_or_y_but{
+    margin:20px 10px;
+}
+
+#review_ord_but{
+    margin:20px 10px;
+}
+
+.author_text{
+    color:#0066ff;
+    margin:0;
+    text-decoration:none;
+}
+
+.author_text:hover{
+    text-decoration:underline;
+}
+
+.big_r_d_f{
+    overflow:hidden;
+    width:990px;
+    margin:30px 0 80px;
+    padding:0;
+    display:block;
+}
+
+#big_res_div::-webkit-scrollbar{
+    display:none;
+}
+
+#detail_table::-webkit-scrollbar{
+    display:none;
+}
+
+::-webkit-scrollbar {
+    display:none
+}

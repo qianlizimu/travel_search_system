@@ -1,0 +1,1555 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+	  <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no, shrink-to-fit=no"  name="viewport" />
+
+	  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+	  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-animate.js"></script>
+
+	  <!-- Bootstrap CSS -->
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+	  <link rel="stylesheet"   href="pc_style.css" >
+
+	  <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	  <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+	  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaZkCvf4pZ-8Y155R-4cveEo9jeObf-Jc&language=en&libraries=places"></script>
+
+  </head>
+  <body style="width:100%; margin:0; padding:0;">
+
+  <div class="modal fade" id="openHourModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  >
+	  <div class="modal-dialog modal-dialog-centered" role="document" >
+		  <div class="modal-content">
+			  <div class="modal-header">
+				  <h4 class="modal-title" id="myModalLabel" >Open Hours</h4>
+				  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			  </div>
+			  <div class="modal-body" id="open_hour_text" style="text-align:center;">hi</div>
+			  <div class="modal-footer">
+				  <button type="button" class="btn btn-default" data-dismiss="modal" style="color:#FFFFFF; background-color:#606060;">Close</button>
+			  </div>
+		  </div><!-- /.modal-content -->
+	  </div><!-- /.modal -->
+  </div>
+  <div ng-app="myApp" ng-controller="myCtrl"  style="width:99.5%; text-align:center; margin:0 auto; padding:3px;" class="container"  ng-cloak>
+
+
+<div class="row justify-content-center" style="margin:0; padding:0; width:100%;">
+    <div class="col-12 col-sm-9" id="search_box" style="text-align:center; margin:0; padding:10px 0 10px 10px;">
+		<div class="row justify-content-center" style="width:100%;">
+			<div class="col-12 col-sm-8">
+		<h5><b>Travel and Entertainment Search</b></h5>
+
+		<form  style="padding:0; margin:0; width:100%;" >
+			<div class="form-group row justify-content-start"  style="text-align:left;">
+				<label for="input_keyword" class="col-12 col-sm-3 col-form-label col-form-label-sm"  >keyword
+					<span style="color:red">*</span></label>
+				<div class="col-12 col-sm-9" >
+					<input type="text" class="form-control form-control-sm" id="input_keyword"  />
+					<div id="keyword_reminder"></div>
+				</div>
+			</div>
+			<div class="form-group row justify-content-start"  style="text-align:left;" style="width:100%; margin:0; padding:0;">
+				<label for="input_category" class="col-12 col-sm-3 col-form-label col-form-label-sm" >Category</label>
+				<div class="col-12 col-sm-6" >
+					<select type="text" class="custom-select form-control form-control-sm " id="input_category" >
+						<option selected value="default">Default</option>
+						<option value="airport">Airport</option>
+						<option value="amusement_park">Amusement Park</option>
+						<option value="aquarium">Aquarium</option>
+						<option value="art_gallery">Art Gallery</option>
+						<option value="bakery">Bakery</option>
+						<option value="bar">Bar</option>
+						<option value="beauty_salon">Beauty Salon</option>
+						<option value="bowling_alley">Bowling Alley</option>
+						<option value="bus_station">Bus Station</option>
+						<option value="cafe">Cafe</option>
+						<option value="campground">Campground</option>
+						<option value="car_rental">Car Rental</option>
+						<option value="casino">Casino</option>
+						<option value="lodging">Lodging</option>
+						<option value="movie_theater">Movie Theater</option>
+						<option value="museum">Museum</option>
+						<option value="night_club">Night Club</option>
+						<option value="park">Park</option>
+						<option value="parking">Parking</option>
+						<option value="restaurant">Restaurant</option>
+						<option value="shopping_mall">Shopping Mall</option>
+						<option value="stadium">Stadium</option>
+						<option value="subway_stations">Subway Station</option>
+						<option value="taxi_stand">Taxi Stand</option>
+						<option value="train_station">Train Station</option>
+						<option value="transit_station">Transit Station</option>
+						<option value="travel_agency">Travel Agency</option>
+						<option value="zoo">Zoo</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group row justify-content-start"  style="text-align:left;">
+				<label for="input_distance" class="col-12 col-sm-3  col-form-label col-form-label-sm" >Distance(miles)</label>
+				<div class="col-12 col-sm-6" >
+					<input id="input_distance" type="text" class="form-control form-control-sm" placeholder="10" />
+				</div>
+			</div>
+			<div class="form-group row justify-content-start" style="text-align:left;" >
+				<label class="col-12 col-sm-3 " >From<span style="color:red">*</span></label>
+				<div class="col-12 col-sm-9" style="text-align:left; ">
+					<input type="radio" name="from_place" style="margin:0px;" checked id="current_radio" onchange="radio_change()" /> Current location <br />
+					<input type="radio" name="from_place" style="margin:0px;" id="other_radio" onchange="radio_change()" /> Other. Please specify: <br />
+					<input type="text" id="input_location" class="form-control form-control-sm" placeholder="Enter a location" disabled="disabled" />
+					<div id="location_reminder"> </div>
+				</div>
+			</div>
+			<div class="form-group row justify-content-start" style="text-align:left;" >
+				<div class="col-12 ">
+					<button type="button"  class="btn btn-primary btn-sm" id="search_button" ng-click="click_search()" disabled="disabled"><i class="fa fa-search"></i>&nbsp;Search</button>
+					<button type="button"  class="btn btn-sm btn-light" id="clear_button" ng-click="click_clear()">Clear</button>
+				</div>
+			</div>
+		</form>
+		</div>
+	</div>
+	</div>
+  </div>
+
+
+	<div class="result_button_div">
+	  <button type="button"  id="result_button" class="btn btn-primary btn-sm" ng-click="show_result()" >Results</button>
+	  <button type="button"  id="favorite_button" class="btn btn-sm" ng-click="show_favorite()" >Favorites</button>
+	</div>
+
+		<div id="progress_bar" style="width:90%; margin: 60px auto; display:none;">
+        <div  class="progress "    >
+            <div class="progress-bar progress-bar-striped progress-bar-animated"  role="progressbar"
+                 aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
+                 style="width: 50%;">
+            </div>
+        </div>
+		</div>
+	  <div id="big_r_d_f"  style="width:100%;">
+		  <div  id="big_result_area" style="width:100%; text-align:center;" ng-hide="!now_result" ng-class="result_animation">
+	<div class="row"  id="result_area" style="width:100%; margin:0 0 80px 0;"   >
+		<div class="alert alert-warning col-12" role="alert"  style="margin:100px 0; text-align:left; display:none;" id="res_table_no_rec" >
+			No records.
+		</div>
+		<div class="alert alert-danger col-12" role="alert"  style="margin:100px 0; display:none; text-align:left;" id="res_table_error"  >
+			Failed to get search results.
+		</div>
+
+		<div class="col-12 col-sm-12 " style=" margin-bottom:5px; margin-right:0; padding:2px 5px; text-align:right; " ng-cloak >
+		<button type="button"  id="detail_button" class="btn btn-sm" ng-disabled="active_detail_pid=='' "   ng-click="detail_but_click()" >
+			Details &gt;</button>
+		</div>
+		<div id="big_res_div" style=" text-align:center; margin:0; padding:0;" class="col-12 col-sm-12 align-self-center table-responsive-sm text-nowrap ">
+		<table id="result_table" style=" margin:5px 0 30px 0; font-size:12px; min-width:100%; text-align:left; " class="text-nowrap" ng-show="results.length>0">
+			<tr><th style="padding:5px 15px 5px 5px;">#</th><th style="padding:5px 15px 5px 5px;">Category</th>
+				<th style="padding:5px 40px 5px 5px;">Name</th><th style="padding:5px 40px 5px 5px;">Address</th>
+				<th style="padding:5px 15px 5px 5px;">Favorite</th><th style="padding:5px 15px 5px 5px;">Details</th>
+			</tr>
+		   <tr ng-repeat="x in results track by $index"  ng-class="{false: 'content_tr', true:'tr_detail_active'}[x.place_id==active_detail_pid]" >
+			   <td style="padding:5px 20px 5px 5px;">{{$index+1}}</td>
+			   <td style="padding:5px 20px 5px 5px;"><img style="width:30px;"  ng-src="{{x.icon}}" /></td>
+			   <td style="padding:5px 30px 5px 5px; ">{{x.name}}</td>
+			   <td style="padding:5px 30px 5px 5px; ">{{x.vicinity}}</td><td style="padding:5px 20px 5px 5px;">
+			   <div class="icon_div" style="font-size:13px;" ng-click=fav_table_select($index) >
+			   <i class="fa fa-star-o" ng-if="x.isfav==false" ></i>  <i class="fa fa-star" style="color:#FFCC66;" ng-if="x.isfav==true"></i>
+			   </div></td>
+			   <td style="padding:5px 20px 5px 5px;"><div class="icon_div" ng-click=idx_detail($index) style="font-size:14px;"><b><i class="fa fa-angle-right"></i></b> </div></td>
+		   </tr>
+		</table>
+
+	</div>
+		<div id="next_button_div " class="col-12" ng-show="results.length>0" style="text-align:center;">
+			<button type="button" ng-click="click_previous()"  id="previous_button" class="btn" style="display:none;" >Previous</button>
+			<button type="button" ng-click="click_next()"  id="next_button" class="btn" style="display:none;">Next</button>
+		</div>
+	</div>
+		  </div>
+	  <div id="big_detail_area"  style="width:100%; text-align:center; padding:0; margin:0;" ng-hide="!now_detail" >
+	<div class="row  " id="detail_area"   >
+		<div class="col-12 align-self-center" style="text-align:center; padding:0; margin:0;">
+		<h5  id="detail_title"></h5>
+		<button  type="button" ng-click="click_list()"  id="list_button" class="btn" >&lt;&nbsp;List</button>
+		<a href="javascript:void(0)" id="twitter_url_a" lang="en" ><img id="detail_twitter" src="http://cs-server.usc.edu:45678/hw/hw8/images/Twitter.png" /></a>
+		<div id="detail_star_div" class="icon_div" onclick="detail_add_fav()"> <i class="fa fa-star-o" ></i> </div>
+		<div class="clear"></div>
+		<ul class="nav nav-tabs justify-content-end" id="detail_nav" style="padding:0; margin:0; font-size:13px;">
+			<li class="nav-item"  id="detail_info_tab" style="padding:0px;">
+			<a  class="nav-link" href="#info_tab" id="detail_info_a" data-toggle="tab" onclick="show_info_tab()" style="padding:10px;">Info</a></li>
+			<li class="nav-item"  id="detail_photo_tab" style="padding:0px;">
+			<a class="nav-link" href="#photos_tab" id="detail_photo_a" data-toggle="tab" onclick="detail_photos()" style="padding:10px;">Photos</a></li>
+			<li class="nav-item"  id="detail_map_tab" style="padding:0px;">
+			<a class="nav-link"  href="#map_tab" id="detail_map_a" data-toggle="tab" onclick="detail_map()" style="padding:10px;">Map</a></li>
+			<li class="nav-item"  id="detail_review_tab" style="padding:0px;">
+			<a class="nav-link" href="#reviews_tab" id="detail_review_a" data-toggle="tab" ng-click="click_review()" style="padding:10px;" >Reviews</a></li>
+		</ul>
+		<div class="clear"></div>
+		<div class="tab-content" style="width:100%; margin:0;">
+			<div class="tab-pane active" id="info_tab" style="width:100%; margin:0;">
+				<div class="alert alert-warning" role="alert"  style="margin:100px 0; text-align:left; display:none;" id="detail_info_no_rec" >
+					No records.
+				</div>
+			<div class="table-responsive-sm" >
+		<table id="detail_table" style="margin:20px 0; font-size:14px; line-height:20px; min-width:100%;">
+		</table>
+			</div>
+			</div>
+			<div class="tab-pane" id="photos_tab">
+				<div class="alert alert-warning" role="alert"  style="margin:100px 0; display:none; text-align:left;" id="photo_tab_no_rec" >
+					No records.
+				</div>
+				<div id="photo_tab_content" style="width:100%; margin:20px 0 80px; ">
+					<div class="d-none d-sm-inline" style="border:none; margin:0; width:25%; padding:0; float:left;" id="photo_div0"></div>
+					<div class="d-none d-sm-inline" style="border:none; margin:0; width:25%; padding:0; float:left;" id="photo_div1"></div>
+					<div class="d-none d-sm-inline" style="border:none; margin:0; width:25%; padding:0; float:left;" id="photo_div2"></div>
+					<div class="d-none d-sm-inline" style="border:none; margin:0; width:25%; padding:0; float:left;" id="photo_div3"></div>
+					<div class="clear"></div>
+					<div class="d-block d-sm-none text-center" style="width:99%; margin:0 auto;" id="mobile_photo">
+						</div>
+				</div>
+			</div>
+			<div class="tab-pane " id="map_tab" style="width:100%; margin:15px 0;">
+					<form style="width:100%; margin:0;">
+					<div class="form-group row no-gutters ">
+						<div class="col-sm-4 col-xs-12" style="text-align:left; padding:5px; ">
+							<label for="detail_map_from" style="display:block;">From</label>
+							<input type="text" class="form-control form-control-sm" id="detail_map_from">
+						</div>
+						<div class="col-sm-4 col-xs-12" style="text-align:left; padding:5px;   ">
+							<label for="detail_map_to" style="display:block;">To</label>
+							<input type="text" class="form-control form-control-sm" id="detail_map_to" readonly  style=" font-weight:bold;">
+						</div>
+						<div class="col-sm-2 col-xs-12" style="text-align:left; padding:5px; ">
+							<label for="detail_map_tmode" style="display:block;">Travel Mode</label>
+							<select type="text" class="custom-select form-control form-control-sm" style="padding:3px 5px;" id="detail_map_tmode">
+								<option selected value="DRIVING">Driving</option>
+								<option value="BICYCLING">Bicycling</option>
+								<option value="TRANSIT">Transit</option>
+								<option value="WALKING">Walking</option>
+							</select>
+						</div>
+						<div class="col-sm-2 col-xs-12  text-left text-sm-right" style=" padding:5px;  " >
+							<div class="d-none d-sm-block"><br/></div>
+							<button class="btn btn-primary btn-sm" id="submit_map" style="background-color:#007BFF; " onclick="get_direction()">Get Directions</button>
+						</div>
+					</div>
+				</form>
+				<div id="pegman_div"  onclick="change_streetview()" >
+					<img src="http://cs-server.usc.edu:45678/hw/hw8/images/Pegman.png" style="width:30px; margin:0;" id="streetview_icon" />
+				</div>
+				<div class="alert alert-warning" role="alert"  style="margin:80px 0; text-align:left;" id="map_panel_error" ng-show="one_page_res.length==0">
+					No records.
+				</div>
+				<div id="map_and_panel">
+				<div id="place_map"  ></div>
+				<div id="route_panel" style="display:none;"></div>
+				</div>
+				<div id="street_view_div" style="display:none;"></div>
+			</div>
+			<div class="tab-pane" id="reviews_tab">
+				<div class="btn-group" role="group" id="g_or_y_but">
+					<button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{{g_or_y_text}}
+					</button>
+					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+						<a class="dropdown-item" href="javascript:void(0)" ng-click="click_google(); ">Google Reviews</a>
+						<a class="dropdown-item" href="javascript:void(0)" ng-click="click_yelp(); " >Yelp Reviews</a>
+					</div>
+				</div>
+				<div class="btn-group" role="group" id="review_ord_but">
+					<button id="btnGroupDrop2" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{{ord_text}}
+					</button>
+					<div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+						<a class="dropdown-item" href="javascript:void(0)" ng-click="review_order='index_num'; ord_text='Default Order';">Default Order</a>
+						<a class="dropdown-item" href="javascript:void(0)" ng-click="review_order='-rating'; ord_text='Highest Rating';">Highest Rating</a>
+						<a class="dropdown-item" href="javascript:void(0)" ng-click="review_order='rating'; ord_text='Lowest Rating';">Lowest Rating</a>
+						<a class="dropdown-item" href="javascript:void(0)" ng-click="review_order='-time'; ord_text='Most Recent';">Most Recent</a>
+						<a class="dropdown-item" href="javascript:void(0)" ng-click="review_order='time'; ord_text='Least Recent';">Least Recent</a>
+					</div>
+				</div>
+			  	<div class="alert alert-warning " role="alert" ng-hide=" review_choice.length>0" style="margin:80px 0; text-align:left;" ng-class="review_animation">
+					No records.
+				</div>
+				<table style="margin:0px auto 80px; font-size:14px; width:100%;" cellspacing="10px" ng-hide="g_or_y_text=='Yelp Reviews' || review_choice.length==0" ng-class="review_animation" >
+
+					<tr ng-repeat="x in review_choice | orderBy: review_order " style="margin:0; padding:0; border-style:none; ">
+						<td style="border-style:none;  text-align:center; width:100%; margin:0; padding:5px;" valign="top">
+							<div style="margin:0; padding:0; width:100%; border:0.5px solid #C0C0C0; text-align:left;" class="row no-gutters">
+								<div style=" padding:10px; border-style:none;  text-align:right;" class="col-3 col-sm-1">
+									<a href="{{x.author_url}}" target="view_window">
+										<img  ng-if="x.profile_photo_url!=''"  ng-click="author_url(x.author_url)"  ng-src="{{ x.profile_photo_url }}" class="rounded-circle" style="width:60px; height:60px;" />
+									</a>
+								</div>
+								<div style=" padding:10px; border-style:none;  text-align:left;" class="col-9 col-sm-11">
+									<a  href="{{x.author_url}}" target="view_window" class="author_text">{{ x.author_name}}</a>
+									<p style=" margin:0"> <span style="color:#e7711b">{{x.stars}}</span> <span style="color:#C0C0C0;">{{x.time_want}}</span> </p>
+									<p style="margin:0 0 20px 0;">{{x.text}}</p>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<table style="margin:0px auto 80px; font-size:14px; width:100%; " cellspacing="10px" ng-hide="g_or_y_text=='Google Reviews'  || review_choice.length==0" ng-class="review_animation" >
+
+					<tr ng-repeat="x in review_choice | orderBy: review_order " style="margin:0; padding:0; border-style:none; ">
+						<td style="border-style:none;  text-align:center; width:100%; margin:0; padding:5px;" valign="top">
+							<div style="margin:0; padding:0; width:100%; border:0.5px solid #C0C0C0; text-align:left;" class="row no-gutters">
+								<div style=" padding:10px; border-style:none;  text-align:right;" class="col-3 col-sm-1">
+									<a href="{{x.author_url}}" target="view_window">
+										<img  ng-if="x.profile_photo_url!=''"  ng-click="author_url(x.author_url)"  ng-src="{{ x.profile_photo_url }}" class="rounded-circle" style="width:60px; height:60px;" />
+									</a>
+								</div>
+								<div style=" padding:10px; border-style:none;  text-align:left;" class="col-9 col-sm-11">
+									<a  href="{{x.author_url}}" target="view_window" class="author_text">{{ x.author_name}}</a>
+									<p style=" margin:0"> <span style="color:#e7711b">{{x.stars}}</span> <span style="color:#C0C0C0;">{{x.time_want}}</span> </p>
+									<p style="margin:0 0 20px 0;">{{x.text}}</p>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+		</div>
+	</div>
+	</div>
+	  </div>
+	<div id="big_favorite_area" style="width:100%; text-align:center;" ng-hide="!now_favorite" ng-class="favorite_animation">
+    <div id="favorite_area" style=" width:100%; overflow:visible;" class="row">
+		<div class="alert alert-warning col-12" role="alert"  style="margin:100px 0; text-align:left;" id="fav_table_no_rec" ng-show="one_page_res.length==0">
+			No records.
+		</div>
+		<div class="col-12 col-sm-12" style=" margin-bottom:5px; margin-right:0; padding:2px 5px; text-align:right; " ng-cloak>
+			<button type="button"  id="fav_detail_button" class="btn btn-sm" ng-disabled="active_detail_pid==''"  ng-click="detail_but_click()" >Details &gt;</button>
+		</div>
+		<div id="big_fav_div" style=" text-align:center; margin:0; padding:0;" class="col-12 col-sm-12 align-self-center table-responsive-sm text-nowrap ">
+		<table id="fav_table"  style=" margin:5px 0 30px 0; font-size:12px; min-width:100%; text-align:left; " ng-show="one_page_res.length>0">
+			<tr><th style="padding:5px 15px 5px 5px;">#</th><th style="padding:5px 15px 5px 5px;">Category</th>
+				<th style="padding:5px 40px 5px 5px;">Name</th><th style="padding:5px 40px 5px 5px;">Address</th>
+				<th style="padding:5px 15px 5px 5px;">Favorite</th><th style="padding:5px 15px 5px 5px;">Details</th>
+			</tr>
+		<tr ng-repeat="x in one_page_res track by $index"  ng-class="{false: 'content_tr', true:'tr_detail_active'}[x.place_id==active_detail_pid]" >
+			<td style="padding:5px 20px 5px 5px;">{{$index+1}}</td>
+			<td style="padding:5px 20px 5px 5px;"><img style="width:30px;"  ng-src="{{x.icon}}" /></td>
+			<td style="padding:5px 30px 5px 5px; ">{{x.name}}</td>
+			<td style="padding:5px 30px 5px 5px; ">{{x.vicinity}}</td><td style="padding:5px 20px 5px 5px;">
+			<div class="icon_div" style="font-size:13px;" ng-click=delete_fav($index) >
+				<i class="fa fa-trash"></i>
+			</div></td>
+			<td style="padding:5px 20px 5px 5px;">
+				<div class="icon_div" ng-click=idx_detail($index) style="font-size:14px;"><b><i class="fa fa-angle-right"></i></b> </div></td>
+		</tr>
+		</table>
+		</div>
+		<div id="fav_next_button_div" class="col-12" >
+			<button type="button" ng-click="fav_click_previous()"  id="fav_previous_button" class="btn" style="display:none;" >Previous</button>
+			<button type="button" ng-click="fav_click_next()"  id="fav_next_button" class="btn" style="display:none;" >Next</button>
+		</div>
+	</div>
+	</div>
+	  </div>
+	</div>
+
+
+	<script>
+
+       var here_lat = "";
+       var here_lon = "";
+       var but_r_f="result";
+
+       var result1="", result2="", result3="";
+       var now_at_page=1;
+       var detail_place_json;
+       var target_place;
+
+       var page_width=990;
+       var from_here=true;
+       var input_from;
+       var yelp_response="none";
+
+
+
+    //    here_lat="34.0223519";
+    //    here_lon="-118.285117";
+       var target_marker;
+       var directionsDisplay;
+       var directionsService = new google.maps.DirectionsService();
+       directionsDisplay = new google.maps.DirectionsRenderer();
+
+       var favorite_list;
+       var fav_idx;
+
+       jQuery.ajax({
+           type: 'GET',
+           url: "http://ip-api.com/json",
+           async: true,
+           success: function (res) {
+               here_lat = res.lat;
+               here_lon = res.lon;
+           }
+       });
+
+//      localStorage.favorite_list="{}";
+//       localStorage.fav_idx="0";
+       if (localStorage.favorite_list ) {
+           favorite_list=JSON.parse(localStorage.favorite_list );
+       }  else {
+           localStorage.favorite_list="{}";
+           localStorage.fav_idx="0";
+           favorite_list={};
+           fav_idx=0;
+	   }
+
+       function add_favorite(placeid, result_cont){
+           if (favorite_list.hasOwnProperty(placeid)) return;
+           fav_idx=parseInt(localStorage.fav_idx);
+           favorite_list=JSON.parse(localStorage.favorite_list );
+           result_cont.add_idx=fav_idx;
+           favorite_list[placeid]=result_cont;
+           localStorage.favorite_list=JSON.stringify(favorite_list);
+           fav_idx++;
+           localStorage.fav_idx=""+fav_idx;
+       }
+
+       function  r_and_f_button(str){
+           if (str== "favorite_button"){
+               document.getElementById("favorite_button").style.backgroundColor="#0066FF";
+               document.getElementById("favorite_button").style.color="#FFFFFF";
+               document.getElementById("result_button").style.color="#0066FF";
+               document.getElementById("result_button").style.backgroundColor="#FFFFFF";
+		   } else {
+               document.getElementById("favorite_button").style.backgroundColor="#FFFFFF";
+               document.getElementById("favorite_button").style.color="#0066FF";
+               document.getElementById("result_button").style.color="#FFFFFF";
+               document.getElementById("result_button").style.backgroundColor="#0066FF";
+		   }
+	   }
+
+       function delete_space(str){
+           while (str!="" && str[0]==" "){
+               str=str.substring(1);
+		   }
+		   while (str!="" && str[str.length-1]==" "){
+               str=str.substring(0, str.length-1);
+		   }
+		   return str;
+	   }
+
+       function check_empty(input_val) {
+           var flag = false;
+           for (var i = 0; i < input_val.length; i++) {
+               if (input_val[i] != ' ') {
+                   flag = true;
+                   break;
+               }
+           }
+           return flag;
+       }
+
+       function check_search_button() {
+           if (here_lat == "" || here_lon == "") {
+               $("#search_button").attr("disabled", true);
+               // $("#search_button").css("background-color", "#57A6FC");
+               return;
+           }
+           var input_val = $("#input_keyword").val();
+           if (check_empty(input_val) == false) {
+               $("#search_button").attr("disabled", true);
+               //  $("#search_button").css("background-color", "#57A6FC");
+               return;
+           }
+
+           if (document.getElementById("current_radio").checked == true) {
+               $("#search_button").attr("disabled", false);
+               return;
+           }
+
+           input_val = $("#input_location").val();
+           if (check_empty(input_val) == false) {
+               $("#search_button").attr("disabled", true);
+               return;
+           }
+
+           $("#search_button").attr("disabled", false);
+       }
+
+       $("#input_keyword").blur(function () {
+           var input_val = $("#input_keyword").val();
+           if (check_empty(input_val) == false) {
+               $("#input_keyword").css("border", "1px solid #FF0000");
+               $("#keyword_reminder").html("Please enter a keyword.");
+           }
+       });
+
+       $("#input_keyword").keyup(function () {
+           var input_val = $("#input_keyword").val();
+           if (check_empty(input_val) == true) {
+               $("#input_keyword").css("border", "0.5px solid #C0C0C0");
+               $("#keyword_reminder").html("");
+                   check_search_button();
+                  // console.log(input_val);
+           } else {
+               $("#search_button").attr("disabled", true);
+           }
+       });
+
+       $("#detail_map_from").keyup(function () {
+           var input_val = $("#detail_map_from").val();
+           if (check_empty(input_val) == true) {
+               document.getElementById("submit_map").disabled=false;
+           } else {
+               document.getElementById("submit_map").disabled=true;
+           }
+       });
+
+       $("#input_location").blur(function () {
+           var input_val = $("#input_location").val();
+           if (check_empty(input_val) == false) {
+               $("#input_location").css("border", "1px solid #FF0000");
+               $("#location_reminder").html("Please enter a location.");
+           }
+       });
+
+       $("#input_location").keyup(function () {
+           var input_val = $("#input_location").val();
+           if (check_empty(input_val) == true) {
+               $("#input_location").css("border", "0.5px solid #C0C0C0");
+               $("#location_reminder").html("");
+               if (document.getElementById("search_button").disabled == true) check_search_button();
+           } else {
+               $("#search_button").attr("disabled", true);
+           }
+       });
+
+
+       function radio_change() {
+           if (document.getElementById("other_radio").checked == true) {
+               $("#input_location").attr("disabled", false);
+               check_search_button();
+           } else {
+               $("#input_location").attr("disabled", true);
+
+               document.getElementById("input_location").style.border="0.5px solid #C0C0C0";
+               document.getElementById("location_reminder").innerHTML="";
+               check_search_button();
+           }
+       }
+
+       var autocomplete1 = new google.maps.places.Autocomplete(document.getElementById("input_location"));
+       var autocomplete2 = new google.maps.places.Autocomplete(document.getElementById("detail_map_from"));
+
+
+       function getTop(ele){
+           var tops=ele.offsetTop;
+           if (ele.offsetParent!=null) {
+               tops+=getTop(ele.offsetParent);
+           }
+           return tops;
+       }
+
+       function getLeft(ele){
+           var lefts=ele.offsetLeft;
+           if (ele.offsetParent!=null) {
+               lefts+=getLeft(ele.offsetParent);
+           }
+           return lefts;
+       }
+
+       function switch_tab_to(tab_string){
+           document.getElementById("reviews_tab").style.display="none";
+           document.getElementById("map_tab").style.display="none";
+           document.getElementById("photos_tab").style.display="none";
+           document.getElementById("info_tab").style.display="none";
+
+           document.getElementById("detail_info_a").className="nav-link";
+           document.getElementById("detail_photo_a").className="nav-link";
+           document.getElementById("detail_map_a").className="nav-link";
+           document.getElementById("detail_review_a").className="nav-link";
+
+        if (tab_string!="none") {
+            document.getElementById(tab_string).style.display = "block";
+            if (tab_string=="info_tab")  document.getElementById("detail_info_a").className="nav-link active";
+            if (tab_string=="reviews_tab")  document.getElementById("detail_review_a").className="nav-link active";
+            if (tab_string=="map_tab")  document.getElementById("detail_map_a").className="nav-link active";
+            if (tab_string=="photos_tab")  document.getElementById("detail_photo_a").className="nav-link active";
+        }
+           if (tab_string=="none") {
+               document.getElementById("detail_info_a").className="nav-link active";
+           }
+
+	   }
+
+       function show_info_tab(){
+           switch_tab_to("info_tab");
+	   }
+
+       function new_win_photo(src){
+		    var newwin=window.open("");
+
+
+           newwin.document.write('<div style="position:absolute; width:100%;  height:100%; overflow:scroll; top:0px; left:0px; background-color:#000000;'+
+                ' vertical-align:middle;"><div style="position:relavtie">'+
+               '<img id="imgshow" style="position:absolute; top:50%; left:50%; " src="'+src+'"   /></div></div>');
+      //          '<img id="imgshow" style="position:absolute; top:50%; left:50%; max-width:100%; max-height:100%; width:auto; height:auto;" src="'+src+'"   /></div></div>');
+
+            var this_img=newwin.document.getElementById("imgshow");
+            var transx="0", transy="0";
+         if ( newwin.document.getElementById("imgshow").offsetWidth > document.body.clientWidth ){
+             newwin.document.getElementById("imgshow").style.left="0px";
+         }  else {
+             transx="-50%";
+		 }
+           if ( newwin.document.getElementById("imgshow").offsetHeight > document.body.clientHeight ) {
+               newwin.document.getElementById("imgshow").style.top = "0px";
+           }else {
+               transy="-50%";
+		   }
+           newwin.document.getElementById("imgshow").style.transform="translate("+transx+","+transy+")";
+		}
+
+       function detail_photos(){
+           switch_tab_to("photos_tab");
+
+              if (detail_place_json.hasOwnProperty("photos")==false ||
+				  (detail_place_json.hasOwnProperty("photos") && detail_place_json.photos.length==0)){
+                  document.getElementById("photo_tab_content").style.display="none";
+                  document.getElementById("photo_tab_no_rec").style.display="block";
+                  return;
+			  }
+           document.getElementById("photo_tab_content").style.display="block";
+           document.getElementById("photo_tab_no_rec").style.display="none";
+               var photos = detail_place_json.photos;
+
+               var i, j;
+//               var photo_html = "";
+//               for (i = 0; i <= 3; i++) {
+//                   photo_html += '<div class="d-none d-sm-inline" style="border:none; margin:0; width25%; padding:0; float:left;" id="photo_div' + i + '"></div>';
+//               }
+//               photo_html+='<div class="clear"></div>';
+//               document.getElementById("photo_tab_content").innerHTML = photo_html;
+               var photo_divs = ["", "", "", ""];
+               var photo_arr=[];
+
+               for (i = 0; i <= 3; i++) {
+                   j = i;
+                   while (j < photos.length) {
+                      var photo_url=photos[j].getUrl({'maxWidth':photos[j].width, 'maxHeight':photos[j].height});
+                      photo_arr.push(photo_url);
+                       photo_divs[i] += '<div style=" border-radius:1px; border:0.5px solid #C0C0C0; margin:3px; padding:3px; width:99%; text-align:center; "><a href="'+photo_url+'" target="#"><img src="' +
+           //                photo_url + '" style="width:' + (page_width / 4 - 20) + 'px; cursor:pointer; " onclick="new_win_photo(this.src)" /></div>';
+                           photo_url + '" style="width:100%; cursor:pointer; "  /></a></div>';
+                      j=j+4;
+                   }
+               }
+         //  console.log("photos:");
+        //   console.log(photo_arr);
+             for (i = 0; i <= 3; i++) {
+                   var getid="photo_div" + i;
+                   document.getElementById(getid).innerHTML = photo_divs[i];
+               }
+
+               var one_line="";
+		    for (i=0; i<photos.length; i++){
+               one_line+=   '<div class="d-block d-sm-none" style="width:100%; text-align:center; margin-bottom:5px; border-radius:1px; border:0.5px solid #C0C0C0; padding:5px;">'+
+					'<a href="'+photo_arr[i]+'" target="#"><img src="'+photo_arr[i]+'" style="width:100%" /></a></div>';
+            }
+           document.getElementById("mobile_photo").innerHTML = one_line;
+	   }
+
+	   function change_streetview(){
+         if (document.getElementById("street_view_div").style.display=="none") {
+             document.getElementById("map_panel_error").style.display="none";
+             document.getElementById("map_and_panel").style.display = "none";
+             document.getElementById("street_view_div").style.display = "block";
+             document.getElementById("street_view_div").innerHTML="";
+             document.getElementById("streetview_icon").src="http://cs-server.usc.edu:45678/hw/hw8/images/Map.png";
+             var panorama = new google.maps.StreetViewPanorama(
+                 document.getElementById('street_view_div'), {
+                     position: {lat: target_place.geometry.location.lat, lng: target_place.geometry.location.lng}
+                 });
+         } else {
+             document.getElementById("map_and_panel").style.display = "block";
+             document.getElementById("street_view_div").style.display = "none";
+             document.getElementById("streetview_icon").src="http://cs-server.usc.edu:45678/hw/hw8/images/Pegman.png";
+		 }
+         }
+
+         function get_direction_step2( origin_val ){
+             var dest_val=new google.maps.LatLng(target_place.geometry.location.lat, target_place.geometry.location.lng);
+             var travel_mode=document.getElementById("detail_map_tmode").value;
+             var dir_request = {
+                 origin: origin_val,
+                 destination: dest_val,
+                 travelMode: travel_mode,
+                 provideRouteAlternatives: true
+             };
+             target_marker.setMap(null);
+             directionsService.route(dir_request, function(result, status) {
+                 if (status == 'OK') {
+                     directionsDisplay.setDirections(result);
+                     document.getElementById('route_panel').style.display="block";
+                     directionsDisplay.setPanel(document.getElementById('route_panel'));
+                 } else {
+                     document.getElementById("map_panel_error").style.display="block";
+                     document.getElementById("map_and_panel").style.display = "none";
+                 }
+             });
+		 }
+
+         function get_direction(){
+             document.getElementById("map_panel_error").style.display="none";
+             document.getElementById("street_view_div").style.display = "none";
+             document.getElementById("map_and_panel").style.display = "block";
+	         var start_pos=document.getElementById("detail_map_from").value;
+	         var origin_val;
+			 if (start_pos.indexOf("Your location")>=0 || start_pos.indexOf("My location")>=0){
+                 origin_val= new google.maps.LatLng(here_lat, here_lon);
+                 get_direction_step2( origin_val );
+			 } else {
+			     var flag=true;
+                 var htmlobj = jQuery.ajax({type: 'GET', url: "geocode_place?name="+encodeURI(start_pos), async: true,
+                     success: function (res) {
+                         if (res=="none"){
+                             document.getElementById("map_panel_error").style.display="block";
+                             document.getElementById("map_and_panel").style.display = "none";
+                             flag=false;
+                             return;
+                         }
+                         var res_place=JSON.parse(res);
+                         origin_val= new google.maps.LatLng(res_place.lat, res_place.lng);
+                         get_direction_step2( origin_val );
+                     },
+                     error:function(XMLHttpRequest, textStatus, errorThrown){
+                             document.getElementById("map_panel_error").style.display="block";
+                             document.getElementById("map_and_panel").style.display = "none";
+                             flag=false;
+                     }
+                 });
+                if (flag==false) return;
+			 }
+		 }
+
+       function detail_map() {
+           var map_html;
+
+           switch_tab_to("map_tab");
+           document.getElementById("map_and_panel").style.display = "block";
+        //   console.log(detail_place_json);
+           if (from_here) {
+               document.getElementById("detail_map_from").value = "Your location";
+           } else {
+               document.getElementById("detail_map_from").value= input_from;
+           }
+           document.getElementById("submit_map").disabled=false;
+
+          document.getElementById("detail_map_to").value=detail_place_json.name+', '+detail_place_json.formatted_address;
+           document.getElementById("map_panel_error").style.display="none";
+           document.getElementById('route_panel').style.display="none";
+           document.getElementById("place_map").style.display = "block";
+           document.getElementById("street_view_div").style.display = "none";
+
+	   }
+
+
+	   function time_want(time_stamp){
+           var d_time = new Date(time_stamp * 1000);
+           var  Y =d_time.getFullYear() + '-';
+           var M = (d_time.getMonth()+1 < 10 ? '0'+(d_time.getMonth()+1) : d_time.getMonth()+1) + '-';
+           var D = d_time.getDate();
+           if (parseInt(D)<10) D='0'+D+' '; else D=D+' ';
+           var h = d_time.getHours();
+           if (parseInt(h)<10) h='0'+h+':'; else h=h+':';
+           var m = d_time.getMinutes() ;
+           if (parseInt(m)<10) m='0'+m+':'; else m=m+':';
+           var s = d_time.getSeconds();
+           if (parseInt(s)<10) s='0'+s;
+           return Y+M+D+h+m+s;
+	   }
+
+       function get_yelp_value(){
+           var address_comp=detail_place_json.formatted_address.split(",");
+           var address_component=detail_place_json.address_components;
+           var postal_code="xxxx";
+           var city="xxxx";
+           var state="xxxx";
+           var country="xxxx";
+           var address1="xxxx";
+
+           if (address_comp.length>=3){
+               city=delete_space(address_comp[address_comp.length-3]);
+               address1=delete_space(address_comp[0]);
+           }
+
+           var i;
+           for (i=0; i<address_component.length; i++){
+               if (address_component[i].types[0]=="administrative_area_level_1"){
+                   state=address_component[i].short_name;
+               } else if (address_component[i].types[0]=="country") {
+                   country = address_component[i].short_name;
+               } else if (address_component[i].types[0]=="postal_code"){
+                   postal_code=delete_space(address_component[i].long_name);
+               }
+           }
+           var htmlobj_yelp;
+           yelp_response = "none";
+           if (city=="xxxx" || state=="xxxx" || country=="xxxx") {
+               yelp_response = "none";
+           } else  {
+                jQuery.ajax({
+                   type: 'GET',
+                   url: "get_yelp?name=" + encodeURI(detail_place_json.name) + "&city=" + encodeURI(city) + "&state=" + state +
+                   "&country=" + country + "&postal_code=" + postal_code + "&address1=" + encodeURI(address1),
+                   async: true,
+				   success:function(res){
+                           yelp_response =res;
+				   },
+					error:function(XMLHttpRequest, textStatus, errorThrown){
+                        yelp_response = "none";
+					}
+               });
+
+           }
+	   }
+
+	   function favorite_judge(res_table){
+           var i;
+           favorite_list=JSON.parse(localStorage.favorite_list);
+          // console.log(favorite_list);
+           for (i=0; i<res_table.length; i++){
+                if (favorite_list.hasOwnProperty(res_table[i].place_id)){
+                    res_table[i].isfav=true;
+				} else  res_table[i].isfav=false;
+		   }
+		   return res_table;
+	   }
+
+	   function remove_star_favorite(places){
+
+	   }
+
+       function detail_add_fav(){
+	       if (JSON.stringify(target_place ) == "{}"){
+	           return;
+		   }
+           favorite_list=JSON.parse(localStorage.favorite_list);
+           if (favorite_list.hasOwnProperty(target_place.place_id)){
+               delete favorite_list[target_place.place_id];
+               localStorage.favorite_list=JSON.stringify(favorite_list);
+               document.getElementById("detail_star_div").innerHTML='<i class="fa fa-star-o" ></i>';
+		   } else {
+               document.getElementById("detail_star_div").innerHTML = ' <i class="fa fa-star" style="color:#FFCC66;" ></i>';
+               add_favorite(target_place.place_id, target_place);
+           }
+	   }
+
+       var app=angular.module('myApp', ['ngAnimate' ]);
+       app.controller('myCtrl', function($scope) {
+           $scope.showDetail=true;
+           $scope.active_detail_pid="";
+           $scope.res_table_error=false;
+           $scope.r_d_f="clear";
+           $scope.now_result=false;
+           $scope.now_detail=false;
+           $scope.now_favorite=false;
+           $scope.g_or_y_text=='Google Reviews';
+           $scope.result_animation="no_animation";
+           $scope.favorite_animation="no_animation";
+           $scope.review_animation="no_animation";
+
+
+           $scope.results=[{place_id:"", icon:"", name:"", vicinity:"", isfav:false}];
+           $scope.one_page_res=[];
+           $scope.review_choice=[{author_name:"", stars:"", time_want:"", text:"", profile_photo_url:"", author_url:""}];
+           $scope.google_reviews=[{author_name:"", stars:"", time_want:"", text:"", profile_photo_url:""}];
+           $scope.yelp_reviews=[{author_name:"", stars:"", time_want:"", text:"", profile_photo_url:""}];
+           $scope.review_order="author_name";
+           $scope.ng_enter="ng-enter";
+           $scope.twitter_url="javascript:void(0)";
+           $scope.detail_items=[{item_title:"Address", item_content:""},
+               {item_title:"Phone Number", item_content:""},
+               {item_title:"Price Level", item_content:""},
+               {item_title:"Rating", item_content:""},
+               {item_title:"Google Page", item_content:""},
+               {item_title:"Website", item_content:""},
+               {item_title:"Hours", item_content:""}];
+
+
+
+           $scope.fav_table_select=function(index_num) {
+               if ($scope.results[index_num].isfav == false) {
+                   $scope.results[index_num].isfav = true;
+                   add_favorite($scope.results[index_num].place_id, $scope.results[index_num]);
+               } else {
+                   $scope.results[index_num].isfav = false;
+                   favorite_list=JSON.parse(localStorage.favorite_list);
+                       delete favorite_list[$scope.results[index_num].place_id];
+                       localStorage.favorite_list=JSON.stringify(favorite_list);
+			   }
+           }
+
+
+
+
+           $scope.click_search=function() {
+               $scope.now_favorite=false;
+               $scope.now_detail=false;
+               $scope.now_result=false;
+               but_r_f="result";
+               $scope.active_detail_pid="";
+               $scope.results=[];
+               $scope.result_animation="no_animation";
+
+              document.getElementById("progress_bar").style.display="block";
+
+
+               document.getElementById("detail_info_a").className="nav-link active";
+               document.getElementById("detail_photo_a").className="nav-link";
+               document.getElementById("detail_map_a").className="nav-link";
+               document.getElementById("detail_review_a").className="nav-link";
+               switch_tab_to("none");
+               now_at_page=1;
+
+
+               document.getElementById("next_button").style.display="none";
+               document.getElementById("previous_button").style.display="none";
+                document.getElementById("res_table_error").style.display="none";
+			   $scope.res_table_error=false;
+
+
+           var htmlobj;
+
+           var input_keyword = $("#input_keyword").val();
+           var input_category = $("#input_category").val();
+           var input_distance = $("#input_distance").val();
+           if (input_distance == "" || isNaN(parseInt(input_distance))) {
+               input_distance = 1609.344 * 10;
+           } else {
+               input_distance = 1609.344 * parseFloat(input_distance);
+           }
+
+           var ajax_url;
+           if (document.getElementById("other_radio").checked == true) {
+               from_here=false;
+               input_from = $("#input_location").val();
+               ajax_url="submit_form?keyword=" + encodeURI(input_keyword + "&categorys=" + input_category +
+                   "&distance=" + input_distance + "&fromplace=other&input_location=" + input_from);
+           } else {
+               ajax_url="submit_form?keyword=" + encodeURI(input_keyword + "&categorys=" + input_category +
+                   "&distance=" + input_distance + "&fromplace=here&here_lat=" + here_lat + "&here_lon=" + here_lon);
+           }
+
+                 try {
+                     jQuery.ajax({
+                         type: 'GET',
+                         url: ajax_url,
+                         async: true,
+                         success: function (res) {
+
+                             $scope.$apply(function () {
+                                 result1 = res;
+                                 result2 = "";
+                                 result3 = "";
+                                 var result_json = JSON.parse(result1);
+                                 $scope.show_result();
+                                 document.getElementById("progress_bar").style.display = "none";
+                                 if (result_json.hasOwnProperty("results") == false) {
+                                     document.getElementById("res_table_error").style.display = "block";
+                                     document.getElementById("res_table_no_rec").style.display = "none";
+                                     document.getElementById("detail_button").style.display = "none";
+                                     return;
+                                 } else if (result_json.results.length == 0) {
+                                     document.getElementById("res_table_no_rec").style.display = "block";
+                                     document.getElementById("res_table_error").style.display = "none";
+                                     document.getElementById("detail_button").style.display = "none";
+                                     return;
+                                 }
+
+                                 document.getElementById("res_table_no_rec").style.display = "none";
+                                 document.getElementById("res_table_error").style.display = "none";
+                                 document.getElementById("detail_button").style.display = "inline";
+                             });
+
+                         },
+                         error:function(XMLHttpRequest, textStatus, errorThrown){
+                             $scope.$apply(function () {
+                                 document.getElementById("progress_bar").style.display = "none";
+                                 result1="";
+                                 document.getElementById("res_table_error").style.display = "block";
+                                 document.getElementById("res_table_no_rec").style.display = "none";
+                                 document.getElementById("detail_button").style.display = "none";
+                                 $scope.show_result();
+                             });
+                         }
+                     });
+                 } catch(e){
+                     $scope.show_result();
+                     document.getElementById("res_table_error").style.display = "block";
+                     document.getElementById("res_table_no_rec").style.display = "none";
+                     document.getElementById("detail_button").style.display = "none";
+				 }
+
+       }
+
+
+           $scope.click_next=function(){
+               var result_json;
+
+               if (now_at_page==1){
+               if (result2=="") {
+                    result_json = JSON.parse(result1);
+             //      result2  =get_next_result(result_json.next_page_token);
+
+                   jQuery.ajax({type:"GET", url:"next_page?token=" + encodeURI(result_json.next_page_token), async:true,
+                       success: function (res) {
+
+                           $scope.$apply(function () {
+                               now_at_page=2;
+                               result_json=JSON.parse(res);
+                                $scope.results= favorite_judge( result_json.results);
+                               result2=res;
+                               document.getElementById("previous_button").style.display="inline";
+                               if (result_json.hasOwnProperty("next_page_token")){
+                                   document.getElementById("next_button").style.display="inline";
+                               } else {
+                                   document.getElementById("next_button").style.display="none";
+                               }
+						   });
+
+                       }});
+
+               } else {
+                   now_at_page = 2;
+                   result_json = JSON.parse(result2);
+                   $scope.results = favorite_judge(result_json.results);
+
+                   document.getElementById("previous_button").style.display = "inline";
+                   if (result_json.hasOwnProperty("next_page_token")) {
+                       document.getElementById("next_button").style.display = "inline";
+                   } else {
+                       document.getElementById("next_button").style.display = "none";
+                   }
+               }
+               } else if (now_at_page==2){
+
+                   if (result3=="") {
+
+                       result_json = JSON.parse(result2);
+                         jQuery.ajax({type:"GET", url:"next_page?token=" + encodeURI(result_json.next_page_token), async:true,
+                           success: function (res) {
+
+                               $scope.$apply(function () {
+
+                                   now_at_page=3;
+                                   result_json=JSON.parse(res);
+//                                   console.log("page3:");
+//                                   console.log(result_json);
+                                   $scope.results= favorite_judge( result_json.results);
+                                   result3=res;
+                                   document.getElementById("next_button").style.display="none";
+                                   document.getElementById("previous_button").style.display="inline";
+
+                               });
+
+                           }});
+
+                   } else {
+                       now_at_page = 3;
+                       result_json = JSON.parse(result3);
+                       $scope.results = favorite_judge(result_json.results);
+                       document.getElementById("next_button").style.display = "none";
+                       document.getElementById("previous_button").style.display = "inline";
+                   }
+                   }
+		   }
+
+           $scope.click_previous=function() {
+               if (now_at_page==2) {
+                    now_at_page=1;
+                   result_json=JSON.parse(result1);
+                   $scope.results=favorite_judge(  result_json.results);
+                   document.getElementById("next_button").style.display="inline";
+                   document.getElementById("previous_button").style.display="none";
+               } else if (now_at_page==3){
+                   now_at_page=2;
+                   result_json=JSON.parse(result2);
+                   $scope.results= favorite_judge( result_json.results);
+                   document.getElementById("next_button").style.display="inline";
+                   document.getElementById("previous_button").style.display="inline";
+			   }
+           }
+
+
+           $scope.idx_detail=function(idx){
+                  var target_json;
+
+               $scope.review_choice=[{author_name:"", stars:"", time_want:"", text:"", profile_photo_url:"", author_url:""}];
+               $scope.google_reviews=[{author_name:"", stars:"", time_want:"", text:"", profile_photo_url:""}];
+               $scope.yelp_reviews=[{author_name:"", stars:"", time_want:"", text:"", profile_photo_url:""}];
+               $scope.result_animation="animation";
+
+               if ($scope.now_result){
+                   if (now_at_page==1) {
+                       target_json=JSON.parse(result1);
+                   } else if (now_at_page==2) {
+                       target_json=JSON.parse(result2);
+                   } else if (now_at_page==3) {
+                       target_json=JSON.parse(result3);
+                   }
+                   target_place=target_json.results[idx];
+			   } else {
+                   target_place=$scope.one_page_res[idx];
+			   }
+
+               $scope.now_result=false;
+        //       document.getElementById("result_area").style.display="none";
+
+               $scope.now_favorite=false;
+               $scope.result_animation="animation";
+               $scope.favorite_animation="animation";
+               switch_tab_to("info_tab");
+
+               $scope.target_angular=target_place;
+               $scope.active_detail_pid=target_place.place_id;
+
+               favorite_list=JSON.parse(localStorage.favorite_list );
+               if (favorite_list.hasOwnProperty(target_place.place_id)){
+                   document.getElementById("detail_star_div").innerHTML=' <i class="fa fa-star" style="color:#FFCC66;" ></i>';
+			   } else {
+                   document.getElementById("detail_star_div").innerHTML='<i class="fa fa-star-o" style="color:#000000;"></i>';
+			   }
+
+                   var place_map = new google.maps.Map(document.getElementById('place_map'), {
+                       center: {lat: target_place.geometry.location.lat, lng: target_place.geometry.location.lng},
+                       zoom: 15
+                   });
+                   target_marker = new google.maps.Marker({
+                   position: {lat: target_place.geometry.location.lat, lng: target_place.geometry.location.lng},
+                   map: place_map
+               });
+               directionsDisplay.setMap(place_map);
+
+                   var service = new google.maps.places.PlacesService(place_map);
+                   var detail_req = {
+                       placeId: target_place.place_id,
+					   language:"en"
+                   };
+
+                   function detail_callback(place, status) {
+                       detail_place_json=place;
+                      console.log(detail_place_json);
+                       if (status == google.maps.places.PlacesServiceStatus.OK) {
+                           var detail_json=[];
+
+                           if (place.hasOwnProperty("formatted_address")){
+                               detail_json.push({title:"Address", val:place.formatted_address});
+						   }
+                           if (place.hasOwnProperty("international_phone_number")){
+                               detail_json.push({title:"Phone Number", val:place.international_phone_number});
+                           }
+                           if (place.hasOwnProperty("price_level")){
+                               var do_num=parseInt(place.price_level);
+                               var price_html="";
+                               if (do_num==0) price_html="0"; else
+                               for (var p_x=1; p_x<=do_num; p_x++) price_html+='$';
+                               detail_json.push({title:"Price Level", val:price_html});
+                           }
+                           /*
+                           if (place.hasOwnProperty("rating")){
+                               detail_json.push({title:"Rating", val:'<span style="float:left;">'+place.rating+'</span>&nbsp;<div style="float:left;"><div class="star-ratings-css" >' +
+                               ' <div class="star-ratings-css-top" style="width:'+(parseFloat(place.rating)*100/5.0)
+                               +'%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div></div></div>'});
+                           }
+                           */
+                           if (place.hasOwnProperty("rating")){
+                               detail_json.push({title:"Rating", val:'<span style="float:left;">'+place.rating+
+							   '</span>&nbsp; <div id="outer_star_div" style="padding:0; margin:0; overflow:hidden; float:left;"><span id="inners" style="font-size:14px; color: #e7711b;">★★★★★</span></div>'});
+                           }
+                           if (place.hasOwnProperty("url")){
+                               detail_json.push({title:"Google Page", val:"<a class='web_link' href='"+place.url+"' target='view_window'>"+place.url+"</a>"});
+                           }
+                           if (place.hasOwnProperty("website")){
+                               detail_json.push({title:"Website", val:"<a class='web_link' href='"+place.website+"' target='view_window'>"+place.website+"</a>"});
+                           }
+                           if (place.hasOwnProperty("opening_hours") ){
+
+                               var openhour_html="";
+                               if (place.opening_hours.open_now==true) {
+                                   openhour_html += "Open now:";
+                               } else {
+                                   openhour_html += "Closed";
+							   }
+                                   var there_lat=target_place.geometry.location.lat;
+                                   var there_lng=target_place.geometry.location.lng;
+
+
+                                   var offset_time=detail_place_json.utc_offset;
+                                    var new_d=new Date();
+                                    var localTime = new_d.getTime();
+
+							         var localOffset=new_d.getTimezoneOffset()*60000;
+							        var utc = localTime + localOffset;
+							        var target_time= utc + (60000*offset_time);
+                                    var   nd = new Date(target_time);
+							      var  week_day_there= parseInt(nd.getDay());
+                               week_day_there=week_day_there-1;
+                                   /*
+                                   var htmlobj = jQuery.ajax({type: 'GET', url: "http://api.geonames.org/timezoneJSON?lat="+there_lat+"&lng="+
+                                   there_lng+"&username=dihuang", async: false});
+                                   var obj = JSON.parse(htmlobj.responseText);
+                                   var there_time=obj.time;
+
+                                  var date_str=there_time.substring( 0, there_time.indexOf(" ") );
+                                   var week_day_there = new Date(Date.parse(date_str.replace(/\-/g,"/")));
+                                   week_day_there=week_day_there.getDay();
+                                  week_day_there=parseInt(week_day_there)-1;
+                                  */
+                                  if (week_day_there==-1) week_day_there=6;
+                                  var today_text= place.opening_hours.weekday_text[week_day_there];
+
+                                  if (place.opening_hours.open_now==true) {
+                                      today_text=today_text.substring( today_text.indexOf(":")+1 );
+                                      openhour_html += today_text;
+                                  }
+
+      openhour_html+='&nbsp;&nbsp;<a style="color:#0066FF; text-decoration:none; cursor:pointer;" onmouseover=\'this.style.textDecoration="underline";\'  ' +
+		  ' onmouseout=\' this.style.textDecoration="none"; \' data-toggle="modal" data-target="#openHourModal">Daily open hours</a>';
+
+                                   var i,j;
+                                   var table_html='<table style="width:98%;">';
+                                   var thisday, thistime, onepos;
+                                   for (j=0; j<place.opening_hours.weekday_text.length; j++){
+                                       i=(j+ week_day_there)%place.opening_hours.weekday_text.length;
+                                       onepos=place.opening_hours.weekday_text[i].indexOf(":");
+                                       thisday=place.opening_hours.weekday_text[i].substring(0, onepos);
+                                       thistime=place.opening_hours.weekday_text[i].substring( onepos+1);
+                                       if (i== week_day_there){
+                                           table_html+='<tr><td style="width:30%;"><b>'+thisday+'</b></td><td style="width:70%;"><b>'+thistime+'</b></td></tr>';
+									   }
+									   else table_html+='<tr><td style="width:30%;">'+thisday+'</td><td style="width:70%;">'+thistime+'</td></tr>';
+								   }
+								   table_html+='</table>';
+							   document.getElementById("open_hour_text").innerHTML=table_html;
+                               detail_json.push({title:"Hours", val:openhour_html});
+                           }
+
+                           var detail_table_html="";
+
+                           for (i=0; i<detail_json.length; i++){
+                              if (i%2==0){
+                                  detail_table_html+='<tr style="background-color:#F0F0F0;"><td style="padding:5px; min-width:130px;"><b>'+detail_json[i].title+
+									  '</b></td><td style="padding:5px; min-width:400px;">'+ detail_json[i].val+'</td></tr>';
+							  } else {
+                                  detail_table_html+='<tr><td style="padding:5px; min-width:130px;"><b>'+detail_json[i].title+
+                                      '</b></td><td style="padding:5px;  min-width:400px;">'+ detail_json[i].val+'</td></tr>';
+							  }
+						   }
+                           document.getElementById("detail_title").innerHTML=place.name;
+                           document.getElementById("detail_table").innerHTML=detail_table_html;
+
+
+
+                           var t_url;
+                           if (detail_place_json.hasOwnProperty("website") && detail_place_json.website!="") t_url=detail_place_json.website;
+                           else  t_url=detail_place_json.url
+                          document.getElementById("twitter_url_a").href="https://twitter.com/intent/tweet?text="+encodeURI("Check out "+detail_place_json.name+" located at "+
+							  detail_place_json.formatted_address+". Website:&url="+encodeURI(t_url)+"&hashtags=TravelAndEntertainmentSearch");
+
+                           get_yelp_value();
+                           if (detail_json.length==0){
+                               document.getElementById("detail_info_no_rec").style.display="block";
+                           } else {
+                               document.getElementById("detail_info_no_rec").style.display="none";
+						   }
+
+                           $scope.$apply(function () { $scope.now_detail=true;});
+
+                           if (place.hasOwnProperty("rating")) {
+                               var star_wid = document.getElementById("inners").offsetWidth;
+                          //     alert(star_wid+"  now:"+ (parseFloat(star_wid) * star_wid / 5.0));
+                               document.getElementById("outer_star_div").style.width = (parseFloat(star_wid) * parseFloat(place.rating) / 5.0) + "px";
+                           }
+                       }
+                   }
+
+                  service.getDetails(detail_req, detail_callback);
+             //  $scope.showDetail=true;
+
+                 
+		   }
+
+          $scope.click_review=function(){
+              var idx, idx_j;
+              $scope.review_animation="no_animation";
+              $scope.review_order="index_num";
+              $scope.ord_text="Default Order";
+              $scope.g_or_y_text="Google Reviews";
+              if (detail_place_json.hasOwnProperty("reviews")==false){
+                  $scope.google_reviews=[];
+                  $scope.review_choice=$scope.google_reviews;
+                  $scope.g_or_y_text="Google Reviews";
+                  switch_tab_to("reviews_tab");
+                    return;
+              }
+              $scope.google_reviews=detail_place_json.reviews;
+          //    console.log($scope.google_reviews);
+                  for (idx = 0; idx < detail_place_json.reviews.length; idx++) {
+                      $scope.google_reviews[idx].index_num = idx;
+                      $scope.google_reviews[idx].stars = "";
+                      for (idx_j = 1; idx_j <= parseInt(detail_place_json.reviews[idx].rating); idx_j++) $scope.google_reviews[idx].stars += '★';
+                      $scope.google_reviews[idx].time_want = time_want($scope.google_reviews[idx].time);
+                  }
+			  $scope.review_choice=$scope.google_reviews;
+              switch_tab_to("reviews_tab");
+              $scope.yelp_reviews=[];
+              $scope.review_animation="review_animation";
+              }
+
+              $scope.click_yelp=function(){
+                  if ($scope.g_or_y_text=="Yelp Reviews"){
+                      return;
+                  }
+                  $scope.review_animation="review_animation";
+                  if (yelp_response!="none"){
+                      var obj = JSON.parse(yelp_response);
+                      $scope.yelp_reviews=obj;
+                      var tmp_date, i;
+                      for (i=0; i<$scope.yelp_reviews.length; i++){
+                          $scope.yelp_reviews[i].index_num=i;
+                          $scope.yelp_reviews[i].author_url=$scope.yelp_reviews[i].url;
+                          $scope.yelp_reviews[i].author_name=$scope.yelp_reviews[i].user.name;
+                          $scope.yelp_reviews[i].time_want=$scope.yelp_reviews[i].time_created;
+                          $scope.yelp_reviews[i].profile_photo_url=$scope.yelp_reviews[i].user.image_url;
+                          $scope.yelp_reviews[i].stars="";
+                          for (idx_j = 1; idx_j <= $scope.yelp_reviews[i].rating; idx_j++)  $scope.yelp_reviews[i].stars += '★';
+                          tmp_date=new Date($scope.yelp_reviews[i].time_created.replace(/-/g,'/'));
+                          $scope.yelp_reviews[i].time=tmp_date.getTime();
+                      }
+                  } else {
+                      $scope.yelp_reviews=[];
+                  }
+            //      console.log($scope.yelp_reviews);
+                  $scope.review_choice=$scope.yelp_reviews;
+                  $scope.g_or_y_text='Yelp Reviews';
+              }
+
+              $scope.click_google=function(){
+                  if ( $scope.g_or_y_text=='Google Reviews'){
+                      return;
+				  }
+                  $scope.review_animation="review_animation";
+                  $scope.review_choice=$scope.google_reviews;
+                  $scope.g_or_y_text='Google Reviews';
+              }
+
+       $scope.show_favorite=function(){
+           but_r_f="favorite";
+             if ($scope.now_favorite) return;
+           if ($scope.now_detail){
+               $scope.favorite_animation="animation";
+           } else {
+               $scope.favorite_animation="no_animation";
+           }
+           $scope.now_detail=false;
+           $scope.now_result=false;
+           $scope.now_favorite=true;
+           favorite_list=JSON.parse(localStorage.favorite_list );
+           fav_idx=parseInt(localStorage.fav_idx);
+           var fav_results=[];
+           for (var key in favorite_list) {
+               fav_results.push(favorite_list[key]);
+           }
+           fav_results=fav_results.sort(function(a,b){return a.add_idx-b.add_idx;});
+           //console.log(fav_results);
+           $scope.fav_results=fav_results;
+
+           if (fav_results.length>20){
+               $scope.one_page_res=fav_results.slice(0, 20);
+            //   console.log($scope.one_page_res);
+               document.getElementById("fav_next_button").style.display="inline";
+		   }else
+           {
+               $scope.one_page_res = fav_results;
+              document.getElementById("fav_next_button").style.display="none";
+           }
+           document.getElementById("fav_previous_button").style.display="none";
+           $scope.fav_at_page=1;
+           if (fav_results.length==0){
+               document.getElementById("fav_detail_button").style.display="none";
+          }else {
+               document.getElementById("fav_detail_button").style.display="inline";
+		   }
+           r_and_f_button("favorite_button");
+	   }
+
+	   $scope.fav_click_next=function(){
+           document.getElementById("fav_previous_button").style.display="inline";
+           $scope.fav_at_page=$scope.fav_at_page+1;
+           if ($scope.fav_at_page*20<=$scope.fav_results.length){
+               document.getElementById("fav_next_button").style.display="inline";
+		   } else {
+               document.getElementById("fav_next_button").style.display="none";
+           }
+          var fav_one_page=[];
+           for (i=($scope.fav_at_page-1)*20; i<$scope.fav_at_page*20; i++){
+               if (i>=$scope.fav_results.length) break;
+              fav_one_page.push($scope.fav_results[i]);
+		   }
+           $scope.one_page_res=fav_one_page;
+		   }
+
+		   $scope.fav_click_previous=function(){
+               document.getElementById("fav_next_button").style.display="inline";
+               $scope.fav_at_page=$scope.fav_at_page-1;
+               if ($scope.fav_at_page>1) {
+                   document.getElementById("fav_previous_button").style.display="inline";
+               } else document.getElementById("fav_previous_button").style.display="none";
+               var fav_one_page=[];
+               for (i=($scope.fav_at_page-1)*20; i<$scope.fav_at_page*20; i++){
+                   if (i>=$scope.fav_results.length) break;
+                   fav_one_page.push($scope.fav_results[i]);
+               }
+               $scope.one_page_res=fav_one_page;
+		   }
+
+		   $scope.show_result=function(){
+               but_r_f="result";
+
+		       if ($scope.now_detail){
+		           $scope.result_animation="animation";
+			   } else {
+                   $scope.result_animation="no_animation";
+			   }
+               $scope.now_favorite=false;
+               $scope.now_detail=false;
+               $scope.now_result=true;
+               r_and_f_button("result_button");
+               now_at_page=1;
+               document.getElementById("detail_button").style.display="none";
+               document.getElementById("previous_button").style.display="none";
+               document.getElementById("next_button").style.display="none";
+               if (result1==""){
+                   $scope.results=[];
+                   return;
+			   }
+               var result_json=JSON.parse(result1);
+               $scope.results=favorite_judge(  result_json.results);
+               //console.log( $scope.results.length);
+               if (result_json.hasOwnProperty("next_page_token") ){
+                   document.getElementById("next_button").style.display="inline";
+               }
+                if ($scope.results.length>0){
+                   document.getElementById("detail_button").style.display="inline";
+			   }
+
+		   }
+
+		   $scope.delete_fav=function(idx){
+               favorite_list=JSON.parse(localStorage.favorite_list );
+               delete favorite_list[$scope.one_page_res[idx].place_id];
+               localStorage.favorite_list=JSON.stringify(favorite_list);
+
+               var fav_results=[];
+               for (var key in favorite_list) {
+                   fav_results.push(favorite_list[key]);
+               }
+               fav_results=fav_results.sort(function(a,b){return a.add_idx-b.add_idx;});
+               //    console.log(fav_results);
+               $scope.fav_results=fav_results;
+
+               if (fav_results.length==0){
+                   $scope.one_page_res=fav_results;
+                   document.getElementById("fav_detail_button").style.display="none";
+			   }
+               else if (($scope.fav_at_page-1)*20>=fav_results.length){
+                   $scope.fav_click_previous();
+                   document.getElementById("fav_next_button").style.display="none";
+			   }  else {
+                   var fav_one_page=[];
+                   var i;
+                   for (i=($scope.fav_at_page-1)*20; i<$scope.fav_at_page*20; i++){
+                       if (i>=$scope.fav_results.length) break;
+                       fav_one_page.push($scope.fav_results[i]);
+                   }
+                   $scope.one_page_res=fav_one_page;
+			   }
+		   }
+
+		   $scope.detail_but_click=function(){
+               $scope.now_result=false;
+               $scope.now_detail=true;
+               $scope.now_favorite=false;
+               $scope.result_animation="animation";
+               $scope.favorite_animation="animation";
+
+               favorite_list=JSON.parse(localStorage.favorite_list);
+               if (favorite_list.hasOwnProperty(target_place.place_id)==false){
+                   document.getElementById("detail_star_div").innerHTML='<i class="fa fa-star-o" ></i>';
+               } else {
+                   document.getElementById("detail_star_div").innerHTML = ' <i class="fa fa-star" style="color:#FFCC66;" ></i>';
+               }
+		   }
+
+		   $scope.click_list=function(){
+
+		       if (but_r_f=="result"){
+		           $scope.result_animation="animation";
+                   $scope.results=favorite_judge(  $scope.results);
+             //      $scope.result_animation="animation";
+                   $scope.now_detail=false;
+                   $scope.now_favorite=false;
+                   $scope.now_result=true;
+			     } else {
+                   $scope.favorite_animation="animation";
+//                   $scope.now_result=false;
+//                   $scope.now_detail=false;
+//                   $scope.now_favorite=true;
+				   $scope.show_favorite();
+               }
+
+		   }
+
+               $scope.click_clear=function(){
+               but_r_f="result";
+               r_and_f_button("result_button");
+               $scope.active_detail_pid="";
+               $scope.now_result=false;
+               $scope.now_detail=false;
+               $scope.now_favorite=false;
+
+               $scope.result_animation="no_animation";
+               $scope.favorite_animation="no_animation";
+               result1=""; result2=""; result3="";
+               document.getElementById("search_button").disabled=true;
+               document.getElementById("input_location").disabled=true;
+               document.getElementById("input_location").value="";
+               document.getElementById("input_location").placeholder="Enter a location";
+
+               document.getElementById("current_radio").checked = true;
+               document.getElementById("other_radio").checked = false;
+
+               document.getElementById("input_distance").value="";
+               document.getElementById("input_distance").placeholder="10";
+
+               document.getElementById("input_category").value = "default";
+               document.getElementById("input_keyword").value="";
+               document.getElementById("input_keyword").style.border="0.5px solid #C0C0C0";
+               document.getElementById("keyword_reminder").innerHTML="";
+               document.getElementById("input_location").style.border="0.5px solid #C0C0C0";
+               document.getElementById("location_reminder").innerHTML="";
+		   }
+
+   });
+
+
+	</script>
+ </body>
+</html>
